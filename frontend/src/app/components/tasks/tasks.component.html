@@ -1,0 +1,54 @@
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+ <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+ <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <!-- Materialize Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.7/angular.min.js"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<div class="container-fluid">
+<div class="row">
+<div class="col">
+<form #taskForm="ngForm"   (ngSubmit)="addTask(taskForm)">
+ <div class="row">
+ <div class="input-field col ">
+ <input type="text"  name="title"  #title="ngModel" [(ngModel)] = "taskService.selectedTask.title" 
+ placeholder="Título de tarea" />
+ </div>
+  <div class="row">
+  <div class="input-field col">
+ <input type="text"  name="description"  #description="ngModel" [(ngModel)] = "taskService.selectedTask.description" 
+ placeholder="Ingrese descripción..." />
+ </div>
+ </div>
+ <div class="card-action">
+ <div class="input-field col  s12">
+ <button class="btn right" (click) = 'addTask(taskForm)'> Agregar  </button>
+  </div>
+ </div>
+ </div>
+</form>
+</div>
+<div class="col s7"></div>
+<table>
+<thead>
+<th>Título</th>
+<th>Descripción</th>
+<th>Eliminar</th>
+</thead>
+<tbody>
+<tr *ngFor="let task of  taskService.tasks"  >
+<td>{{task.title}}</td>
+<td>{{task.description}}</td>
+<td>
+<a (click)="deleteTask(task._id)">
+<i class="material-icons">delete</i>
+</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
